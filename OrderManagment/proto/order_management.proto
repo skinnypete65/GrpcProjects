@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package ecommerce;
+
+option go_package = "./order_management";
+
+service OrderManagement {
+  rpc searchOrders(ClientID) returns (stream Order);
+  rpc addOrder(ClientOrder) returns (google.protobuf.Empty);
+}
+
+message ClientID {
+  string clientID = 1;
+}
+
+message ClientOrder {
+  string clientID = 1;
+  Order order = 2;
+}
+
+message Order {
+  string id = 1;
+  repeated string items = 2;
+  string description = 3;
+  float price = 4;
+  string destination = 5;
+}
