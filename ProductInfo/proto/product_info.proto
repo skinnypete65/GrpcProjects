@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+package ecommerce;
+
+option go_package = "./ecommerce";
+
+service ProductInfo {
+  rpc addProduct(Product) returns (ProductID);
+  rpc getProduct(ProductID) returns (Product);
+  rpc getProducts(google.protobuf.Empty) returns (Products);
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message ProductID {
+  string value = 1;
+}
+
+message Products {
+  repeated Product products = 1;
+}
